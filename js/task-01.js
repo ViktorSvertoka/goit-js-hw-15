@@ -1,13 +1,14 @@
-const items = categories.querySelectorAll('.item');
+const textInput = document.getElementById('validation-input');
 
-console.log(`Number of categories: ${items.length}`);
-console.log('\n');
+textInput.addEventListener('blur', event => {
+  const inputLength = event.currentTarget.value.length;
+  const requiredLength = Number(event.currentTarget.dataset.length);
 
-items.forEach(item => {
-  const title = item.firstElementChild;
-  const elements = item.lastElementChild.children;
-
-  console.log(`Category: ${title.textContent}`);
-  console.log(`Elements: ${elements.length}`);
-  console.log('\n');
+  if (inputLength === requiredLength) {
+    textInput.classList.remove('invalid');
+    textInput.classList.add('valid');
+  } else {
+    textInput.classList.remove('valid');
+    textInput.classList.add('invalid');
+  }
 });
