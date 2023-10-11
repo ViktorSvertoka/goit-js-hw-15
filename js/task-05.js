@@ -10,14 +10,17 @@ const destroyButton = document.querySelector('[data-destroy]');
 const boxesDiv = document.getElementById('boxes');
 
 function createBoxes(amount) {
+  const elements = [];
   for (let i = 0; i < amount; i += 1) {
     const div = document.createElement('div');
     const size = 30 + i * 10;
     div.style.width = `${size}px`;
     div.style.height = `${size}px`;
     div.style.background = getRandomHexColor();
-    boxesDiv.insertAdjacentElement('beforeend', div);
+    elements.push(div);
   }
+
+  boxesDiv.append(...elements);
 }
 
 createButton.addEventListener('click', () => {
@@ -29,4 +32,6 @@ function destroyBoxes() {
   input.value = '';
 }
 
-destroyButton.addEventListener('click', destroyBoxes);
+destroyButton.addEventListener('click', () => {
+  destroyBoxes();
+});
